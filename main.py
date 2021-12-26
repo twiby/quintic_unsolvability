@@ -1,6 +1,6 @@
-import quintic
-
 def main():
+	import quintic
+
 	# solvability of the quadratic
 	dim = 2
 	commutator_depth = 1 # needs nth roots
@@ -39,6 +39,14 @@ def main():
 	[print(p) for p in ordered_set_of_perms]
 	print("reached at depth", depth-1)
 
+def make_figures():
+	import display
+	display.make_commutator_figure(2, 1)
+	display.make_commutator_figure(3, 2)
+	display.make_commutator_figure(4, 3)
+	display.make_commutator_figure(5, 2)
+	display.show()
 
 if __name__ == "__main__":
 	main()
+	make_figures()
