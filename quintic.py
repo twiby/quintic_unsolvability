@@ -86,25 +86,7 @@ def is_solved(dim, commutator_depth):
 			return (False, c)
 	return True
 
-
-# solvability of the quadratic
-dim = 2
-commutator_depth = 1 # needs nth roots
-print("dim", dim, "with commuting depth", commutator_depth, "solved:", is_solved(dim, commutator_depth))
-
-# solvability of the cubic
-dim = 3
-commutator_depth = 2 # needs 2 nested nth roots
-print("dim", dim, "with commuting depth", commutator_depth, "solved:", is_solved(dim, commutator_depth))
-
-# solvability of the quadric
-dim = 4
-commutator_depth = 3 # needs 3 nested nth roots
-print("dim", dim, "with commuting depth", commutator_depth, "solved:", is_solved(dim, commutator_depth))
-
-### To really prove the unsolvability of the quintic, 
-### we need to show that we can produce a non trivial commutator of arbitrary depth.
-### We choose that they all will have the result ('3', '1', '2', '4', '5')
+### The followng were developed for degree 5 only
 
 def derive_commutators(p):
 	assert(len(p) % 2 == 0)
@@ -166,22 +148,3 @@ def unique_sorted_perm_list(perms):
 			unique_perms.append(p)
 	return sorted(unique_perms)
 
-
-print()
-c_0 = Permutation(5, [2,0,1,3,4])
-print("interpreting", c_0, "as a commutator of any depth")
-
-depth = 2
-ordered_set_of_perms = []
-while True:
-	perms = as_generalized_commutator(c_0, depth)
-	assert(c_0 == derive_end_commmutator(perms))
-	perms = unique_sorted_perm_list(perms)
-	if lists_equal(perms, ordered_set_of_perms):
-		break
-	ordered_set_of_perms = perms
-	depth += 1
-
-print("unique set of permutations needed for commutator of any depth: ")
-[print(p) for p in ordered_set_of_perms]
-print("reached at depth", depth-1)
